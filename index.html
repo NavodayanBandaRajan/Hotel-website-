@@ -1,0 +1,718 @@
+<html>
+  <head>
+    <title> hotel website</title>
+    
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+  <style>
+     *{
+  box-sizing: border-box;
+     }
+ 
+       body{
+      margin:0;
+      overflow-x: hidden; /* side scroll hata dega */
+     scroll-behavior: smooth;
+    }
+    
+    .navbar{
+  width: calc(100% - 10px);
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  padding: 10px 15px;   /* 🔥 height control */
+  
+  border: solid 4px black;
+  border-radius: 12px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+    
+    
+    .logo{
+    margin-right: 4px; 
+    }
+    
+    .nav{
+      text-decoration: none;
+    }
+    
+    .nav a{
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      padding: 6px;
+    }
+    
+    .nav a:hover{
+      background-color: white;
+      color: black;
+      border-radius: 19px;
+      padding: 7px;
+      margin: 10px;
+    }
+    
+    content{
+      width: 100%;
+    }
+    .section{
+       width: 100%;
+       margin: auto;
+      padding: 80px 15px;
+      border-radius: 16px;
+      border: none;
+      min-height: 100vh;
+    }
+    
+  
+  #aboutus h2,
+  #facilities h2,
+  #services h2,
+  #rooms h2{
+     border: double 2px black;
+     padding: 10px;
+     border-radius: 17px;
+   } 
+    
+    #home{
+      background: linear-gradient(145deg, red, pink, yellow, purple);
+      background-position: center;
+      width: 100%;
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: Sans-Serif,Arial;
+      font-weight: bold;
+      width: 100%;
+    }
+    
+    #home h1{
+      border: double 2px black;
+      border-radius: 13px;
+      text-align: center;
+      margin: 0 auto;
+      padding: 13px;
+    }
+    
+    #home p{
+      margin: 0 auto;
+      font-size: 16px;
+    }
+    
+    #aboutus{
+      background: linear-gradient(145deg, red, white, blue );
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    #facilities{
+      background: linear-gradient(144deg,  pink, yellow);;
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    #facilities .card,
+    #services .card,
+     #prohibition .card{
+      background: linear-gradient(135deg, lightblue, yellow);
+      border-radius: 17px;
+      height: 187px;
+    }
+    
+    
+    #facilities .card:hover,
+    #services .card:hover,
+    #prohibition .card:hover{
+      transform: translateY(-10px);
+      transition: 0.3s;
+      background: lightgreen;
+      color: black;
+      font-size: 17px;
+      size: 80px;
+      
+    }
+     
+    
+    #facilities p{
+      background: linear-gradient(144deg,  pink, yellow);
+      backdrop-filter: (13px);
+    }
+    
+     #services{
+      background: linear-gradient(144deg,  lightblue, lightgreen);
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+   
+      #prohibition{
+      background: linear-gradient(144deg,  lightblue, yellow);
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    } 
+    
+    #rooms{
+      background: linear-gradient(144deg,  pink, yellow);;
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    
+    .rooms-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.room-card{
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px gray;
+  text-align: center;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.room-card img{
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.room-card h3{
+  margin: 10px 0;
+}
+
+.room-card p{
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.room-card h4{
+  color: green;
+  margin: 10px 0;
+}
+
+.room-card button{
+  background: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.room-card button:hover{
+  background: red;
+}
+
+.room-card:hover{
+  transform: translateY(-10px);
+}
+
+ #gallery{
+      background: linear-gradient(140deg, pink, white, pink);
+      width: 100%;
+      text-align: center;
+      display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 10px;
+      padding: 20px;
+    }
+    
+    #gallery h1{
+      text-align: center;
+    }
+    
+    #gallery img{
+     width: 100%;
+     height: 200px;
+     object-fit: cover;
+     border-radius: 10px;
+    }
+    
+    #lightbox{
+     display: none;
+     position: fixed;
+     top:0;
+     left:0;
+     width:100%;
+     height:100%;
+     background: rgba(0,0,0,0.9);
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+    }
+
+    #lightbox-img{
+     max-width: 90%;
+     max-height: 90%;
+     border-radius: 10px;
+    }
+
+/* Close Button */
+    #close{
+     position: absolute;
+     top: 20px;
+     right: 30px;
+     font-size: 40px;
+     color: white;
+     cursor: pointer;
+    }
+    
+     #contact{
+     background: #111;
+     color: white;
+     text-align: center;
+     padding: 40px 20px;
+    }
+    
+    #booking{
+  text-align: center;
+  padding: 40px;
+  background: #111;
+  color: white;
+}
+
+.booking-form{
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.booking-form input,
+.booking-form select{
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.booking-form button{
+  padding: 10px;
+  background: orange;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.booking-form button:hover{
+  background: red;
+}
+    
+    #map{
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.map-container{
+  margin-top: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px gray;
+}
+ 
+ .footer{
+      background-color: #111;
+      border-radius: 16px;
+      text-align: center;
+      width: 100%;
+      height: 90px;
+      margin: 0 auto;
+      padding: 20px;
+      border: solid 3px white;
+      color: white;
+    }
+    
+   @media (max-width: 768px){
+
+  .navbar{
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav a{
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  #home h1{
+    font-size: 20px;
+  }
+
+  .section{
+    padding-top: 100px;
+  }
+
+  /* Cards full width */
+  .cards, .rooms-container{
+    grid-template-columns: 1fr;
+  }
+
+  /* Gallery 1 column */
+  #gallery{
+    grid-template-columns: 1fr;
+  }
+
+  /* Images height adjust */
+  #gallery img{
+    height: 180px;
+  }
+
+  /* Booking form full width */
+  .booking-form{
+    width: 100%;
+  }
+
+} 
+    
+  </style>
+  </head>
+<body>
+  <div class="navbar">
+      <div class="logo">
+        <h2>
+          J.V
+        </h2>
+      </div>
+     <div class="nav">
+      <a href="#home">HOME</a>
+      <a href="#aboutus">ABOUT US</a>
+      <a href="#facilities">FACILITIES</a>
+      <a href="#services">SERVICES</a>
+       <a href="#prohibition">RUELS & REGULATIONS</a>
+      <a href="#rooms">ROOMS</a>
+      <a href="#gallery">GALLERY</a>
+
+      <a href="#contact">CONTACT</a>
+     <a href="#booking">BOOKING</a> 
+      <a href="#map">MAP</a>
+     </div>
+    </div>
+    
+     <content>
+       
+    <div class="section" id="home" data-aos="fade-up" data-aos-delay="400">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h1> JASWANT VILAS HOTEL</h1>
+      <br>
+     <br>
+     <br>
+      <p> You're most welcome in your school 'JASWANT VILAS HOTEL Of BUTIQUE And ROYALITY'. We provide a quality services and facilities  to our customers. FACILITIES | SERVICES | ROYALITY.</p>
+      <ul>
+        <li>Best place for family & events</li>
+      </ul>
+    </div>
+    
+    <div class="section" id="aboutus" data-aos="fade-right" data-aos-delay="400">
+      <br>
+      <br>
+       <br>
+      <br>
+      <h2> About Us</h2>
+      <br>
+      <br>
+      <p><b>'JASWANT VILAS HOTEL'</b> is a premium and comfortable stay destination located in Prayagraj, Uttar Pradesh. Established in 2015, our hotel is known for providing luxury, comfort, and high-quality services to all our guests.</p>
+      <br>
+      <p>At <b>'JASWANT VILAS HOTEL'</b> , customer satisfaction is our top priority. We believe in giving every guest a royal experience with comfort, respect, and quality service.</p>
+      <ul>
+        <li>Clean & safe environment</li>
+        <li>Customer satisfaction priority</li>
+      </ul>
+    </div>
+    
+    <div class="section" id="facilities" data-aos="zoom-in" data-aos-delay="400">
+       <br>
+      <br>
+      <br>
+      <br>
+      <h2> Hotel Facilities</h2>
+      <br>
+      <br>
+      <p><b>'JASWANT VILAS HOTEL'</b>, provides a wide range of modern facilities to ensure a comfortable and enjoyable stay for all guests. Our hotel offers well-furnished air-conditioned rooms, high-speed WiFi, and 24/7 room service for complete convenience. Guests can enjoy delicious meals at our in-house restaurant and relax in a peaceful environment.</p>
+      <br>
+      <b><i> Some other facilities are here:</i></b>
+      <br>
+      <div class="card" data-aos="flip-left" data-aos-delay="400">
+        <h2>Other Facilities</h2>
+        <ul>
+          <li>secure parking. </li>
+          <li>CCTV surveillance. </li>
+          <li><b>power backup</b> to ensure safety and uninterrupted service. </li>
+          <li>spacious banquet hall. </li>
+        </ul>
+        </div>
+    </div>
+    
+    <div class="section" id="services" data-aos="fade-left" data-aos-delay="400">
+       <br>
+      <br>
+      <br>
+      <br>
+       <h2> Hotel Services</h2>
+      <br>
+      <br>
+      <p>
+<b>'JASWANT VILAS HOTEL'</b>, provides services like 24/7 room service, housekeeping, laundry, food delivery, taxi service, and online booking. We also assist in event management to ensure a smooth and comfortable stay for our guests.
+</p>
+ <br>
+      <b><i> Some other services are here:</i></b>
+      <br>
+       <div class="card" data-aos="flip-left" data-aos-delay="400">
+        <h2>Services</h2>
+        <ul>
+          <li>Online booking. </li>
+          <li>Food delivery.</li>
+          <li><b>Local transport assistance</b> for easy travel.</li>
+          <li><b>Event management and arrangements</b>  for functions and celebrations.. </li>
+        </ul>
+        </div>
+    </div>
+    
+   <div class="section" id="prohibition" data-aos="zoom-in" data-aos-delay="400>
+      <br>
+      <br>
+       <br>
+      <br>
+     <h2> Does & Donts</h2>
+     <br>
+     <p>At <b>Jaswant Vilas Hotel</b>, we request all guests to <b>follow our rules and regulations</b> to ensure a <b>safe, comfortable, and peaceful environment</b> for everyone. A valid <bgovernment ID proof ></b>is mandatory at the time of check-in. Our standard <b>check-in time is 12:00 PM and check-out time is 11:00 AM.</b></p>
+     <br>
+      <b><i> Prohibition Summary:</i></b>
+      <br>
+       <div class="card" data-aos="flip-left" data-aos-delay="400>
+        <h2>Rules & Regulations</h2>
+        <ul>
+          <li><b>Smoking and consumption of harmful substances</b> are not allowed.</li>
+          <li>Loud music or disturbance is not permitted after<b>10:00 PM </b> to ensure a calm atmosphere for all guests.</li>
+          <li>For safety and hygiene reasons, <b>pets are not allowed</b> inside the hotel.</li>
+        </ul>
+        </div>
+   </div>
+    
+    <div class="section" id="rooms" data-aos="zoom-in" data-aos-delay="400">
+      <br>
+      <br>
+      <br>
+      <br>
+      <h2> Rooms</h2>
+          <br>
+      <br>
+      <p>
+Our rooms at Jaswant Vilas Hotel offer a perfect blend of comfort and luxury. We provide Deluxe, Premium, and Royal rooms equipped with AC, TV, clean bathrooms, and modern amenities. Designed with elegant interiors and a peaceful atmosphere, our rooms ensure a relaxing and enjoyable stay for every guest.
+</p>
+      <div class="rooms-container">
+
+  <div class="room-card" data-aos="flip-left" data-aos-delay="300">
+    <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a">
+    <h3>Deluxe Room</h3>
+    <p>Comfortable room with AC, TV & clean bathroom.</p>
+    <h4>₹1200 / night</h4>
+    <button>Book Now</button>
+  </div>
+
+  <div class="room-card" data-aos="flip-left" data-aos-delay="300">
+    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427">
+    <h3>Premium Room</h3>
+    <p>Spacious room with balcony & modern design.</p>
+    <h4>₹2000 / night</h4>
+    <button>Book Now</button>
+  </div>
+
+  <div class="room-card" data-aos="flip-left" data-aos-delay="300">
+    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+    <h3>Royal Suite</h3>
+    <p>Luxury suite with living area & premium service.</p>
+    <h4>₹3500 / night</h4>
+    <button>Book Now</button>
+  </div>
+</div>
+    </div>
+    
+    <div class="section" id="gallery" data-aos="zoom-in-up" data-aos-delay="400">
+      <br>
+      <br>
+      <br>
+      <br>
+         <h1> Gallery</h1>
+      <hr>
+      <br>
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+      <img src="#">
+    </div>
+      <div id="lightbox">
+  <span id="close">&times;</span>
+  <img id="lightbox-img">
+</div>
+    </div>
+    
+   <div class="section"  id="contact" data-aos="fade-up" data-aos-delay="400">
+     <h2> Contact Details</h2>
+     <p><b><i>Get in contact.</i></b></p>
+     <p>Phone: 📞 +91 XXXXX XXXXX<br>
+    G-mail: 📧 hotel@gmail.com 
+    <br>
+    Location: 📍 Kaushambi, Uttar Pradesh</p>
+   </div>
+    
+   <div class="section" id="booking">
+     <br>
+     <br>
+     <br>
+     <br>
+  <h2>Book Your Room</h2>
+
+<form id="bookingForm" class="booking-form">
+    
+    <input type="text" placeholder="Full Name" required>
+    
+    <input type="email" placeholder="Email Address" required>
+    
+    <input type="tel" placeholder="Phone Number" required>
+    
+    <label>Check-in Date</label>
+    <input type="date" required>
+    
+    <label>Check-out Date</label>
+    <input type="date" required>
+    
+    <select required>
+      <option value="">Select Room Type</option>
+      <option>Deluxe Room</option>
+      <option>Premium Room</option>
+      <option>Royal Suite</option>
+    </select>
+    
+    <button type="submit">Book Now</button>
+    
+  </form>
+</div>
+    
+    <div class="section" id="map">
+      <br>
+      <br>
+      <br>
+      <br>
+  <h2>Find Us Here</h2>
+
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps?q=Kaushambi,Uttar%20Pradesh&output=embed"
+      width="100%" 
+      height="400" 
+      style="border:0;" 
+      allowfullscreen="" 
+      loading="lazy">
+    </iframe>
+  </div>
+</div>
+    
+    <div class="footer">
+       <h2>©2026Garvish_Rajan_sreyansh</h2>
+    </div>
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+
+    
+    <script>
+      
+      AOS.init({
+    duration: 1000,
+    once: false
+  });
+      
+      let images = document.querySelectorAll("#gallery img");
+let lightbox = document.getElementById("lightbox");
+let lightboxImg = document.getElementById("lightbox-img");
+let close = document.getElementById("close");
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+close.addEventListener("click", () => {
+  lightbox.style.display = "none";
+});
+
+/* click outside image to close */
+lightbox.addEventListener("click", (e) => {
+  if(e.target !== lightboxImg){
+    lightbox.style.display = "none";
+  }
+});
+      
+      
+document.getElementById("bookingForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let name = document.getElementById("name").value;
+  let room = document.getElementById("room").value;
+  let checkin = document.getElementById("checkin").value;
+  let checkout = document.getElementById("checkout").value;
+
+  let bookingData = {
+    name,
+    room,
+    checkin,
+    checkout
+  };
+
+  // Save in browser
+  localStorage.setItem("booking", JSON.stringify(bookingData));
+
+  // Show confirmation
+  document.getElementById("confirmation").innerHTML =
+    "✅ Booking Confirmed for <b>" + name + "</b> (" + room + ")<br>" +
+    "From " + checkin + " to " + checkout;
+
+  // Reset form
+  document.getElementById("bookingForm").reset();
+});
+</script>
+    
+</body>
+</html>
